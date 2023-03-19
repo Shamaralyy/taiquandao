@@ -1,0 +1,286 @@
+
+.individual.data-v-da66ce72 {
+		width: 100vw;
+		height: 100vh;
+}
+.msg.data-v-da66ce72 {
+		position: relative;
+		width: 750rpx;
+		height: 200rpx;
+		font-size: 37rpx;
+		font-weight: 400;
+}
+.msg_opt.data-v-da66ce72 {
+		position: relative;
+		left: 40rpx;
+		font-weight: 600;
+}
+.msg_picker.data-v-da66ce72 {
+		position: absolute;
+		left: 230rpx;
+		height: 48rpx;
+		border: 2rpx solid black;
+		font-size: 30rpx;
+		padding-left: 15rpx;
+}
+.msg_picker1.data-v-da66ce72 {
+		width: 200rpx;
+		top: 51rpx;
+}
+.msg_picker2.data-v-da66ce72 {
+		width: 400rpx;
+		top: 142rpx;
+}
+.h.data-v-da66ce72 {
+		position: absolute;
+		top: 10rpx;
+		right: 5rpx;
+		width: 0px;
+		height: 0px;
+		border: 10px solid transparent;
+		border-top-color: black;
+}
+.select_type.data-v-da66ce72 {
+		top: 50rpx;
+}
+.select_martial.data-v-da66ce72 {
+		top: 90rpx;
+}
+.userName.data-v-da66ce72 {
+		font-size: 40rpx;
+}
+.race_item.data-v-da66ce72 {
+		position: relative;
+		width: 750rpx;
+		height: 200rpx;
+		margin-top: 40rpx;
+}
+.race_bg.data-v-da66ce72 {
+		position: absolute;
+		width: 750rpx;
+		height: 200rpx;
+		z-index: 1;
+}
+.race_player.data-v-da66ce72 {
+		position: absolute;
+		display: flex;
+}
+.player.data-v-da66ce72 {
+		position: relative;
+		width: 375rpx;
+		height: 245rpx;
+}
+.player_l .race_text.data-v-da66ce72 {
+		position: absolute;
+		text-align: left;
+		top: -2rpx;
+		right: 20rpx;
+		width: 220rpx;
+		height: 135rpx;
+		transform: scale(0.7);
+		text-shadow: 2rpx 10rpx 8rpx #2a2a2a;
+}
+.player_r .race_text.data-v-da66ce72 {
+		position: absolute;
+		text-align: right;
+		top: -2rpx;
+		right: 130rpx;
+		width: 220rpx;
+		height: 135rpx;
+		transform: scale(0.7);
+		text-shadow: 2rpx 10rpx 8rpx #2a2a2a;
+}
+.race_text.data-v-da66ce72,
+	.martial.data-v-da66ce72 {
+		z-index: 2;
+}
+.player_l .martial.data-v-da66ce72 {
+		position: absolute;
+		left: -20rpx;
+		bottom: 66rpx;
+		font-size: 1rpx;
+		transform: scale(0.76);
+		text-shadow: 2rpx 10rpx 8rpx #2a2a2a;
+}
+.player_r .martial.data-v-da66ce72 {
+		position: absolute;
+		right: -20rpx;
+		bottom: 66rpx;
+		font-size: 1rpx;
+		transform: scale(0.76);
+		text-shadow: 2rpx 10rpx 8rpx #2a2a2a;
+}
+.user_msg.data-v-da66ce72 {
+		font-size: 1rpx;
+}
+.player_l .headImg.data-v-da66ce72 {
+		position: absolute;
+		left: 40rpx;
+		top: 47rpx;
+		width: 83rpx;
+		height: 83rpx;
+		border-radius: 50%;
+}
+.player_r .headImg.data-v-da66ce72 {
+		position: absolute;
+		top: 47rpx;
+		right: 38rpx;
+		width: 83rpx;
+		height: 83rpx;
+		border-radius: 50%;
+}
+.player_l .res.data-v-da66ce72 {
+		position: absolute;
+		top: 98rpx;
+		left: 95rpx;
+		width: 43rpx;
+		height: 43rpx;
+		border-radius: 50%;
+		box-shadow: 0rpx 10rpx 10rpx rgba(24, 24, 24, 0.5)
+}
+.player_r .res.data-v-da66ce72 {
+		position: absolute;
+		top: 98rpx;
+		right: 95rpx;
+		width: 43rpx;
+		height: 43rpx;
+		border-radius: 50%;
+		box-shadow: 0rpx 10rpx 10rpx rgba(24, 24, 24, 0.5)
+}
+.detail.data-v-da66ce72 {
+		position: absolute;
+		left: 345rpx;
+		bottom: 20rpx;
+		text-decoration: none;
+		color: #e8e8e8;
+		font-size: 22rpx;
+		transform: scale(0.7);
+}
+.title.data-v-da66ce72 {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		text-align: center;
+		line-height: 45rpx;
+		font-size: 28rpx;
+		z-index: 2;
+}
+.userName.data-v-da66ce72 {
+		font-size: 40rpx;
+}
+.race_item.data-v-da66ce72 {
+		position: relative;
+		width: 750rpx;
+		height: 200rpx;
+		margin-top: 40rpx;
+}
+.race_bg.data-v-da66ce72 {
+		position: absolute;
+		width: 750rpx;
+		height: 200rpx;
+		z-index: 1;
+}
+.race_player.data-v-da66ce72 {
+		position: absolute;
+		display: flex;
+}
+.player.data-v-da66ce72 {
+		position: relative;
+		width: 375rpx;
+		height: 245rpx;
+}
+.player_l .race_text.data-v-da66ce72 {
+		position: absolute;
+		text-align: left;
+		top: -2rpx;
+		right: 20rpx;
+		width: 220rpx;
+		height: 135rpx;
+		transform: scale(0.7);
+		text-shadow: 2rpx 10rpx 8rpx #2a2a2a;
+}
+.player_r .race_text.data-v-da66ce72 {
+		position: absolute;
+		text-align: right;
+		top: -2rpx;
+		right: 130rpx;
+		width: 220rpx;
+		height: 135rpx;
+		transform: scale(0.7);
+		text-shadow: 2rpx 10rpx 8rpx #2a2a2a;
+}
+.race_text.data-v-da66ce72,
+	.martial.data-v-da66ce72 {
+		z-index: 2;
+}
+.player_l .martial.data-v-da66ce72 {
+		position: absolute;
+		left: -20rpx;
+		bottom: 66rpx;
+		font-size: 1rpx;
+		transform: scale(0.76);
+		text-shadow: 2rpx 10rpx 8rpx #2a2a2a;
+}
+.player_r .martial.data-v-da66ce72 {
+		position: absolute;
+		right: -20rpx;
+		bottom: 66rpx;
+		font-size: 1rpx;
+		transform: scale(0.76);
+		text-shadow: 2rpx 10rpx 8rpx #2a2a2a;
+}
+.user_msg.data-v-da66ce72 {
+		font-size: 1rpx;
+}
+.player_l .headImg.data-v-da66ce72 {
+		position: absolute;
+		left: 40rpx;
+		top: 47rpx;
+		width: 83rpx;
+		height: 83rpx;
+		border-radius: 50%;
+}
+.player_r .headImg.data-v-da66ce72 {
+		position: absolute;
+		top: 47rpx;
+		right: 38rpx;
+		width: 83rpx;
+		height: 83rpx;
+		border-radius: 50%;
+}
+.player_l .res.data-v-da66ce72 {
+		position: absolute;
+		top: 98rpx;
+		left: 95rpx;
+		width: 43rpx;
+		height: 43rpx;
+		border-radius: 50%;
+		box-shadow: 0rpx 10rpx 10rpx rgba(24, 24, 24, 0.5)
+}
+.player_r .res.data-v-da66ce72 {
+		position: absolute;
+		top: 98rpx;
+		right: 95rpx;
+		width: 43rpx;
+		height: 43rpx;
+		border-radius: 50%;
+		box-shadow: 0rpx 10rpx 10rpx rgba(24, 24, 24, 0.5)
+}
+.detail.data-v-da66ce72 {
+		position: absolute;
+		left: 345rpx;
+		bottom: 20rpx;
+		text-decoration: none;
+		color: #e8e8e8;
+		font-size: 22rpx;
+		transform: scale(0.7);
+}
+.title.data-v-da66ce72 {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		text-align: center;
+		line-height: 45rpx;
+		font-size: 28rpx;
+		z-index: 2;
+}

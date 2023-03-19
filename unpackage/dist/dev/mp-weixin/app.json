@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/rank/index",
+    "pages/me/index",
+    "pages/core/taekwondo/index",
+    "pages/core/detail/index",
+    "pages/core/enroll/index",
+    "pages/core/register/index",
+    "pages/core/race/index",
+    "pages/core/marCert/index",
+    "pages/core/judge/caipan",
+    "pages/core/judge/caipanma",
+    "pages/core/judge/login",
+    "pages/core/medal/index",
+    "uni_modules/uni-pay/pages/success/success",
+    "uni_modules/uni-pay/pages/ad-interactive-webview/ad-interactive-webview"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#818181",
+    "selectedColor": "#d70003",
+    "borderStyle": "white",
+    "list": [
+      {
+        "text": "排行榜",
+        "pagePath": "pages/rank/index",
+        "iconPath": "static/rank.png",
+        "selectedIconPath": "static/crank.png"
+      },
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/chome.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/me/index",
+        "iconPath": "static/me.png",
+        "selectedIconPath": "static/cme.png"
+      }
+    ]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {}
+}

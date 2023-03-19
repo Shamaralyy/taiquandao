@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "个人信息",
+  "usingComponents": {
+    "song-data-picker": "../../../uni_modules/song-data-picker/components/song-data-picker/song-data-picker",
+    "uni-file-picker": "../../../uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker",
+    "uni-popup-message": "../../../uni_modules/uni-popup/components/uni-popup-message/uni-popup-message",
+    "uni-popup": "../../../uni_modules/uni-popup/components/uni-popup/uni-popup",
+    "avatar": "../../../components/yq-avatar/yq-avatar"
+  }
+}

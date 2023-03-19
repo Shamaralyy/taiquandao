@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "赛事详情",
+  "usingComponents": {
+    "race": "./Race/index"
+  }
+}

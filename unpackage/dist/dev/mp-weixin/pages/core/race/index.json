@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "成绩册",
+  "usingComponents": {
+    "song-data-picker": "../../../uni_modules/song-data-picker/components/song-data-picker/song-data-picker"
+  }
+}

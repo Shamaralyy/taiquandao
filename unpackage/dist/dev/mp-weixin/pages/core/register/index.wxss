@@ -1,0 +1,79 @@
+
+ul.data-v-e992fd98 {
+		list-style: none;
+}
+.participants.data-v-e992fd98 {
+		margin-left: 25rpx;
+		display: flex;
+		width: 700rpx;
+		line-height: 90rpx;
+		border-bottom: 1px solid lightgray;
+		justify-content: space-between;
+}
+.logo-img.data-v-e992fd98 {
+		padding-left: 60rpx;
+		padding-top: 20rpx;
+		margin-bottom: -12rpx
+}
+.qualification.data-v-e992fd98 {
+		width: 357rpx;
+		height: 90rpx;
+}
+.auto_msg.data-v-e992fd98 {
+		width: 400rpx;
+}
+.participants input.data-v-e992fd98,
+	.part_picker.data-v-e992fd98 {
+		width: 400rpx;
+		height: 90rpx;
+		line-height: 90rpx;
+}
+.part_picker.data-v-e992fd98 {
+		margin-top: 20rpx;
+}
+.participants .title.data-v-e992fd98 {
+		font-size: 25rpx;
+}
+.uploadedlist.data-v-e992fd98 {
+		width: 530rpx;
+		height: 210rpx;
+		margin-bottom: 20rpx;
+}
+.uploaded.data-v-e992fd98 {
+		float: left;
+		width: 200rpx;
+		height: 200rpx;
+}
+.btn_check.data-v-e992fd98 {
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		bottom: 30rpx;
+		width: 630rpx;
+		border-radius: 45rpx;
+}
+.check.data-v-e992fd98 {
+		display: block;
+		font-size: 26rpx;
+		margin-left: 30rpx;
+		margin-top: 140rpx;
+}
+.agreement.data-v-e992fd98 {
+		text-decoration: none;
+		color: rgb(236, 147, 105);
+}
+.uploadbox.data-v-e992fd98 {
+		float: left;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 20rpx;
+		margin-right: 290rpx;
+		width: 200rpx;
+		height: 200rpx;
+		border: 2px solid lightgray;
+}
+.i_uploadImg.data-v-e992fd98 {
+		width: 100rpx;
+		height: 100rpx;
+}

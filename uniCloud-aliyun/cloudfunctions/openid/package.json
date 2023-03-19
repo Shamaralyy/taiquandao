@@ -1,0 +1,7 @@
+{
+  "name": "openid",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

@@ -1,0 +1,64 @@
+
+	/**index.wxss**/
+.logo-bg {
+		color: white;
+		margin-bottom: 60rpx;
+}
+.logo {
+		position: absolute;
+		width: 100vw;
+		height: 490rpx;
+		z-index: -1;
+}
+.content {
+		position: absolute;
+}
+.rectange {
+		background-color: black;
+		height: 70rpx;
+		width: 40rpx;
+}
+.rectange_low {
+		background-color: black;
+		height: 10rpx;
+		width: 40rpx;
+}
+.first {
+		padding-top: 20rpx;
+		font-size: x-small;
+		font-weight: 600;
+}
+.second_left {
+		font-size: small;
+		font-weight: 600;
+}
+.second_right {
+		font-size: small;
+}
+.third_left {
+		font-size: small;
+		font-weight: 600;
+}
+.third_right {
+		font-size: small;
+}
+.img {
+		height: 50rpx;
+		width: 50rpx;
+		filter: invert(100%);
+}
+.iconTextBox {
+		width: 750rpx;
+		display: flex;
+		justify-content: space-around;
+		margin-top: 30rpx;
+		font-size: 28rpx;
+}
+.iconText {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		width: 130rpx;
+		height: 130rpx;
+}

@@ -1,0 +1,128 @@
+{	
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/rank/index",
+			"style": {
+				"navigationBarTitleText": "排行榜"
+			}
+		},
+		{
+			"path": "pages/me/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/core/taekwondo/index",
+			"style": {
+				"navigationBarTitleText": "跆拳道"
+			}
+		},
+		{
+			"path": "pages/core/detail/index",
+			"style": {
+				"navigationBarTitleText": "赛事详情"
+			}
+		},
+		{
+			"path": "pages/core/enroll/index",
+			"style": {
+				"navigationBarTitleText": "报名"
+			}
+		},
+		{
+			"path": "pages/core/register/index",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		},
+		{
+			"path": "pages/core/race/index",
+			"style": {
+				"navigationBarTitleText": "成绩册"
+			}
+		},
+		{
+			"path": "pages/core/marCert/index",
+			"style": {
+				"navigationBarTitleText": "武馆认证"
+			}
+		},
+		{
+			"path": "pages/core/judge/caipan",
+			"style": {
+				"navigationBarTitleText": "裁判胜负"
+			}
+		},
+		{
+			"path": "pages/core/judge/caipanma",
+			"style": {
+				"navigationBarTitleText": "裁判胜负"
+			}
+		},
+		{
+			"path": "pages/core/judge/login",
+			"style": {
+				"navigationBarTitleText": "裁判胜负"
+			}
+		},
+		{
+			"path": "pages/core/medal/index",
+			"style": {
+				"navigationBarTitleText": "赛事详情"
+			}
+		}
+	,{
+    "path": "uni_modules/uni-pay/pages/success/success",
+    "style": {
+        "backgroundColor": "#F8F8F8",
+        "navigationBarTitleText": "支付成功"
+    }
+}
+,{
+    "path": "uni_modules/uni-pay/pages/ad-interactive-webview/ad-interactive-webview",
+    "style": {
+        "backgroundColor": "#F8F8F8",
+        "navigationBarTitleText": "ad"
+    }
+}
+],
+	"tabBar": {
+		"color": "#818181",
+		"selectedColor": "#d70003",
+		"borderStyle": "white",
+		"list": [
+			{
+				"text": "排行榜",
+				"pagePath": "pages/rank/index",
+				"iconPath": "static/rank.png",
+				"selectedIconPath": "static/crank.png"
+			},
+			{
+					"text": "首页",
+					"pagePath": "pages/index/index",
+					"iconPath": "static/home.png",
+					"selectedIconPath": "static/chome.png"
+				},
+			{
+				"text": "我的",
+				"pagePath": "pages/me/index",
+				"iconPath": "static/me.png",
+				"selectedIconPath": "static/cme.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
