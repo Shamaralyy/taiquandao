@@ -883,5 +883,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     E: $data.tp
   });
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/components/yq-avatar/yq-avatar.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/code/vue3/taiquandao/components/yq-avatar/yq-avatar.vue"]]);
 wx.createComponent(Component);

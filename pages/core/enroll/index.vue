@@ -104,7 +104,8 @@
 		<!-- 费用缴纳页面 -->
 		<view wx:key="index" v-if="3===selindex">
 			<view class="fourth">
-				<view class="box" v-for="(item,index) in enrollList" :key="index">
+				<text v-if="enrollList.length === 0" class="noAdd">暂无数据</text>
+				<view v-else class="box" v-for="(item,index) in enrollList" :key="index">
 					<view class="top">
 						{{item.name}}
 					</view>
@@ -236,9 +237,6 @@
 		index: 0,
 		arr: ['太极一章', '太极二章', '太极三章', '太极四章', '太极五章', '太极六章', '太极七章', '太极八章']
 	});
-	//跳转到缴费界面的 报名信息
-	/* 	let tmp_enrollMsg = ref([]); //选择学生后先暂存在这里
-		let enrollMsg = ref([]); //项目类别选择完后  将暂存的移交到这里渲染出来 */
 	const enrollList = ref([]);
 
 	//弹出层
@@ -315,7 +313,6 @@
 	let isWeightTrue = ref(false);
 
 	function pswConfirm(val) {
-		console.log(val);
 		if (Number(val) > 0) {
 			if (typeP.value === 1) { //个人
 				infoP.value.weight = Number(val).toFixed(1);
@@ -353,8 +350,6 @@
 
 	function propickerChangeGR(e) {
 		firstPro.index = e.detail.value;
-		console.log('stuIdx.value', stuIdx.value);
-		console.log('sourceStuList.value', sourceStuList.value);
 		sourceStuList.value[stuIdx.value].firstIdx = e.detail.value;
 	};
 
@@ -379,7 +374,6 @@
 			if (typeP.value === 1) {
 				if (selectData.prefsIndex == 0) { //竞技
 					if (infoP.value.weight > 0) {
-						console.log('userInfo.name', uni.getStorageSync('userInfo').name);
 						typeC.value = 1;
 						objArr.value = [];
 						objArr.value.push({
@@ -408,7 +402,7 @@
 					objArr.value = [];
 					selectedStu.map(item => {
 						objArr.value.push({
-							id: uni.getStorageSync('openid'),
+							id: item.id,
 							name: item.name,
 							weight: Number(item.weight)
 						})
@@ -428,9 +422,6 @@
 			}
 			if (objArr.value.length > 0) {
 				obj.value = objArr.value;
-				console.log('obj.value', obj.value);
-				console.log('typeP.value', typeP.value);
-				console.log('obj.value[0].weight', obj.value[0].weight);
 				messageToggle('success', '添加成功！');
 				enrollList.value = [];
 				if (typeP.value === 1) {
@@ -473,7 +464,6 @@
 					}
 				}
 				selindex.value = 3;
-				console.log('enrollList.value', enrollList.value);
 			}
 		}
 	}
@@ -495,27 +485,34 @@
 	const endTime = ref();
 
 	//生成订单号
+	const order_id = ref('');
+
 	function orderCode() {
-		var orderCode = '';
+		order_id.value = '';
 		for (var i = 0; i < 6; i++) //6位随机数，用以加在时间戳后面。
 		{
-			orderCode += Math.floor(Math.random() * 10);
+			order_id.value += Math.floor(Math.random() * 10);
 		}
-		orderCode = new Date().getTime() + orderCode; //时间戳，用来生成订单号。
-		console.log(orderCode)
-		return orderCode;
+		order_id.value = new Date().getTime() + order_id.value; //时间戳，用来生成订单号。
 	}
+	const price = ref(0.01);
+	const suiji = ref(0);
 
 	function pay() {
-		console.log('openid', uni.getStorageSync('openid'));
+		orderCode();
+		console.log('out_trade', order_id.value);
+		suiji.value = Math.floor(Math.random() * 100000000);
+		console.log('suiji', suiji.value);
+		console.log('obj', obj.value);
+		console.log('order_id.value', order_id.value);
 		uniCloud.callFunction({
 				name: 'getOrderInfo',
 				data: {
 					openid: uni.getStorageSync('openid'),
 					name: '测试',
-					out_trade: orderCode(), //订单号
-					suiji: Math.floor(Math.random() * 100000000),
-					pric: Number(0.01) * 100
+					out_trade: order_id.value, //订单号
+					suiji: suiji.value,
+					pric: price.value * 100
 				}
 			})
 			.then(odr => {
@@ -525,58 +522,93 @@
 					// #ifdef MP-WEIXIN
 					...odr.result.orderInfo,
 					// #endif
-					success() {
+					success(res) {
+						console.log('pay-success-res', res);
 						uni.showModal({
 							title: '支付成功',
 							content: '请和顾问联系执行订单即可！'
-
-						})
+						});
+						//缴费后调用报名接口
+						uni.request({
+							url: 'https://cqshq.top/SelectGame?type=' + Number(typeC.value) + '&mid=' +
+								Number(id.value),
+							method: 'POST',
+							header: {
+								'Content-Type': 'application/json'
+							},
+							data: obj.value,
+							success(res) {
+								console.log('报名成功-res', res);
+							}
+						});
+						//缴费后调用支付记录接口
+						uni.request({
+							url: 'https://cqshq.top/WechatPayCallback',
+							method: 'POST',
+							header: {
+								'Content-Type': 'application/json'
+							},
+							data: {
+								"age": 0,
+								"sex": 0,
+								"id": uni.getStorageSync('openid'),
+								"name": uni.getStorageSync('userInfo').name,
+								"birthdate": "2023-03-20T06:27:50.924Z",
+								"organization": uni.getStorageSync('userInfo').org,
+								"idCardNumber": "string",
+								"joinInGold": 0,
+								"pic": "string",
+								"base64code1": "string",
+								"gd": [{
+									"gold_filename": "string",
+									"base64code2": "string"
+								}],
+								"amount": price.value,
+								"pay_id": order_id.value,
+								"weChat_pay_id": suiji.value
+							},
+							success(res) {
+								console.log('支付记录更新成功-res', res);
+							}
+						});
+						uniCloud.callFunction({
+								name: 'orderQuery',
+								data: {
+									outTradeNo: order_id.value
+								}
+							})
+							.then(res => {
+								console.log('orderQuery-res', res);
+							})
 					},
 					fail() {},
-					complete() {
+					complete(res) {
+						console.log('pay-complete-res', res);
 						// 支付完成后重新加载该页面
 						console.log('支付完成');
 					}
 				})
 			})
-
-		//缴费后调用报名接口
-		/* uni.request({
-			url: 'https://cqshq.top/SelectGame?type=' + Number(typeC.value) + '&mid=' + Number(id.value),
-			method: 'POST',
-			header: {
-				'Content-Type': 'application/json'
-			},
-			data: obj,
-			success(res) {
-				console.log('报名成功-res', res);
-			}
-		}); */
 	}
 	const inputDialog = ref(); //报名弹窗
 	const tmpIdx = ref(); //报名弹窗
 	function changeSel(index) {
 		tmpIdx.value = index;
-		console.log('hasPsw.value', hasPsw.value); //hasPsw:1无需输入密码
-		console.log('index', index);
+		//hasPsw:1无需输入密码
 		if (!uni.getStorageSync('isLogin')) {
-			if (index === 1 || index === 2 || index ===3) {
+			if (index === 1 || index === 2 || index === 3) {
 				messageToggle('warn', '请先登录!')
 			}
 		} else {
 			if (hasPsw.value == 1) {
 				selindex.value = index;
-				console.log('不需要输入密码');
 			} else {
-				console.log('需要输入密码');
 				inputDialog.value.open();
 			}
 		}
 	}
 	//输入报名密码点击确认后
 	function dialogInputConfirm(val) {
-		console.log('val', val);
-		console.log('password.value', password.value);
 		if (val.length !== 6) {
 			messageToggle('warn', '请输入六位数密码！');
 		} else {
@@ -593,11 +625,8 @@
 	const password = ref();
 	const hasPsw = ref(true);
 	onLoad((options) => {
-		console.log('enroll-onload');
-		console.log('options', options);
 		if (options.selindex) selindex.value = options.selindex;
 		if (uni.getStorageSync('enrollObj')) {
-			console.log('enrollObj', uni.getStorageSync('enrollObj'));
 			selindex.value = 0;
 			hasPsw.value = uni.getStorageSync('enrollObj').hasPsw;
 			name.value = uni.getStorageSync('enrollObj').data.name;
@@ -615,13 +644,22 @@
 		}
 	});
 
-	const typeP = ref(uni.getStorageSync('type'));
+	/* const typeP = ref(2); */
+	const typeP = ref(2);
 	const userInfo = ref(uni.getStorageSync('userInfo'));
 	onMounted(() => {
-		console.log('enroll-onMounted');
-		console.log('userInfo.value', userInfo.value);
+/* 		for(let i = 0;i<16;i++) {
+			sourceStuList.value.push({
+				id: i,
+				name: 'aaa',
+				avatarUrl: 'aa',
+				state: true,
+				weight: 0,
+				firstIdx: 0,
+				secondIdx: 0,
+			})
+		} */
 		const openid = uni.getStorageSync('openid')
-		console.log('openid', openid);
 		//获取学生信息
 		uni.request({
 			url: 'https://cqshq.top/SendClassmates?org_id=' + uni.getStorageSync('userInfo').org_id,
@@ -629,18 +667,6 @@
 				'Content-Type': 'application/json'
 			},
 			success: (res) => {
-				/* 				for (let i = 0; i < 30; i++) {
-									sourceStuList.value.push({
-										id: i,
-										name: i,
-										avatarUrl: '',
-										state: false,
-										weight: 0,
-										firstIdx: 0,
-										secondIdx: 0,
-									})
-								} */
-				console.log('stu-res', JSON.parse(res.data));
 				JSON.parse(res.data).forEach(item => {
 					sourceStuList.value.push({
 						id: item.id,
@@ -698,10 +724,9 @@
 	}
 
 	.payBtn {
-		position: absolute;
 		border-radius: 0;
-		right: 10rpx;
-		bottom: 10rpx;
+		margin-top: 30rpx;
+		width: 300rpx;
 	}
 
 	.content {
@@ -890,6 +915,11 @@
 	.fourth {
 		position: relative;
 		padding-top: 30rpx;
+	}
+	
+	.fourth .noAdd {
+		margin-left: 320rpx;
+		color: gray;
 	}
 
 	.fourth .box {

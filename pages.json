@@ -43,6 +43,12 @@
 			}
 		},
 		{
+			"path": "pages/core/msg/index",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		},
+		{
 			"path": "pages/core/race/index",
 			"style": {
 				"navigationBarTitleText": "成绩册"

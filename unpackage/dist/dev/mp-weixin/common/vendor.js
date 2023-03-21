@@ -7155,6 +7155,12 @@ const pages = [
     }
   },
   {
+    path: "pages/core/msg/index",
+    style: {
+      navigationBarTitleText: "个人信息"
+    }
+  },
+  {
     path: "pages/core/race/index",
     style: {
       navigationBarTitleText: "成绩册"
@@ -7512,7 +7518,7 @@ function g(e2) {
 function m(e2) {
   return e2 && "string" == typeof e2 ? JSON.parse(e2) : e2;
 }
-const y = true, _ = "mp-weixin", v = m([]), S = _, k = m('{\n    "address": [\n        "127.0.0.1",\n        "192.168.101.46"\n    ],\n    "debugPort": 9000,\n    "initialLaunchType": "remote",\n    "servePort": 7000,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/下载/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), I = m('[{"provider":"aliyun","spaceName":"tqd","spaceId":"mp-1fb71b09-22c5-4852-a645-8d1d0efc012b","clientSecret":"g0J7jMs94iP5XYDprmSDHg==","endpoint":"https://api.next.bspapp.com"}]') || [];
+const y = true, _ = "mp-weixin", v = m([]), S = _, k = m('{\n    "address": [\n        "127.0.0.1",\n        "10.20.160.93"\n    ],\n    "debugPort": 9000,\n    "initialLaunchType": "remote",\n    "servePort": 7000,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/Program Files (x86)/HbuilderX/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), I = m('[{"provider":"aliyun","spaceName":"tqd","spaceId":"mp-1fb71b09-22c5-4852-a645-8d1d0efc012b","clientSecret":"g0J7jMs94iP5XYDprmSDHg==","endpoint":"https://api.next.bspapp.com"}]') || [];
 let T = "";
 try {
   T = "__UNI__EEBA3CE";

@@ -9,6 +9,7 @@ if (!Math) {
   "./pages/core/detail/index.js";
   "./pages/core/enroll/index.js";
   "./pages/core/register/index.js";
+  "./pages/core/msg/index.js";
   "./pages/core/race/index.js";
   "./pages/core/marCert/index.js";
   "./pages/core/judge/caipan.js";
@@ -29,7 +30,7 @@ const _sfc_main = {
     console.log("App Hide");
   }
 };
-const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/App.vue"]]);
+const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/code/vue3/taiquandao/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
   return {

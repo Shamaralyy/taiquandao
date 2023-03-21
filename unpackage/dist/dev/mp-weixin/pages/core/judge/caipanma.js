@@ -59,7 +59,7 @@ const _sfc_main = {
           message: common_vendor.unref(messageText),
           duration: 2e3
         }),
-        e: common_vendor.sr(message, "a3380fde-0", {
+        e: common_vendor.sr(message, "9da14518-0", {
           "k": "message"
         }),
         f: common_vendor.p({
@@ -69,5 +69,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/pages/core/judge/caipanma.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/code/vue3/taiquandao/pages/core/judge/caipanma.vue"]]);
 wx.createPage(MiniProgramPage);

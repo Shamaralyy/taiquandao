@@ -371,5 +371,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-e992fd98"], ["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/pages/core/register/index.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-e992fd98"], ["__file", "D:/code/vue3/taiquandao/pages/core/register/index.vue"]]);
 wx.createPage(MiniProgramPage);

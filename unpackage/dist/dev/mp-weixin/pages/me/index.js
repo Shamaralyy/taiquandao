@@ -28,6 +28,11 @@ const _sfc_main = {
       user.value.points = user.value.win * 10 + user.value.lose * 5;
       user.value.avatarUrl = userInfo.photo;
     }
+    function toPage(route) {
+      common_vendor.index.navigateTo({
+        url: `/pages/core/` + route + `/index`
+      });
+    }
     function toPersonalData() {
       common_vendor.index.navigateTo({
         url: "/pages/core/register/index"
@@ -125,7 +130,7 @@ const _sfc_main = {
       } : {}, {
         l: isLogin.value
       }, isLogin.value ? {
-        m: common_vendor.o(toPersonalData),
+        m: common_vendor.o(($event) => toPage("msg")),
         n: common_vendor.o(toScore),
         o: common_vendor.o((...args) => _ctx.pai_page && _ctx.pai_page(...args)),
         p: common_vendor.o(toJudge),
@@ -135,5 +140,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-c8e26b33"], ["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/pages/me/index.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-c8e26b33"], ["__file", "D:/code/vue3/taiquandao/pages/me/index.vue"]]);
 wx.createPage(MiniProgramPage);

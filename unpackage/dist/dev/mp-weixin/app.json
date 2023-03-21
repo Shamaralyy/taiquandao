@@ -7,6 +7,7 @@
     "pages/core/detail/index",
     "pages/core/enroll/index",
     "pages/core/register/index",
+    "pages/core/msg/index",
     "pages/core/race/index",
     "pages/core/marCert/index",
     "pages/core/judge/caipan",

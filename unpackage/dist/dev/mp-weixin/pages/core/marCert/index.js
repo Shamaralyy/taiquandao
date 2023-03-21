@@ -169,7 +169,7 @@ const _sfc_main = {
           message: common_vendor.unref(messageText),
           duration: 2e3
         }),
-        x: common_vendor.sr(message, "df00713c-0", {
+        x: common_vendor.sr(message, "77d0a99f-0", {
           "k": "message"
         }),
         y: common_vendor.p({
@@ -179,5 +179,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/pages/core/marCert/index.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/code/vue3/taiquandao/pages/core/marCert/index.vue"]]);
 wx.createPage(MiniProgramPage);

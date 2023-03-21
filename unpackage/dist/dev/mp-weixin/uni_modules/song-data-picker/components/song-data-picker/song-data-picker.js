@@ -300,7 +300,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       return {
         a: index,
         b: common_vendor.o(($event) => _ctx.clickSearchResult(item), index),
-        c: "1efbac63-3-" + i0,
+        c: "5bbf9fc6-3-" + i0,
         d: common_vendor.p({
           title: item.text,
           clickable: true,
@@ -311,7 +311,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     B: _ctx.searchResult.length,
     C: !_ctx.searchResult.length
   } : {}, {
-    D: common_vendor.sr("pickerView", "1efbac63-4"),
+    D: common_vendor.sr("pickerView", "5bbf9fc6-4"),
     E: !_ctx.showSearchResult,
     F: common_vendor.o($options.onchange),
     G: common_vendor.o($options.ondatachange),
@@ -334,5 +334,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }) : {});
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/uni_modules/song-data-picker/components/song-data-picker/song-data-picker.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/code/vue3/taiquandao/uni_modules/song-data-picker/components/song-data-picker/song-data-picker.vue"]]);
 wx.createComponent(Component);

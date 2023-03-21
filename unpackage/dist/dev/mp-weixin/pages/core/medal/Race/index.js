@@ -64,5 +64,5 @@ const _sfc_main = {
     };
   }
 };
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-c7d0c88d"], ["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/pages/core/medal/Race/index.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-c7d0c88d"], ["__file", "D:/code/vue3/taiquandao/pages/core/medal/Race/index.vue"]]);
 wx.createComponent(Component);

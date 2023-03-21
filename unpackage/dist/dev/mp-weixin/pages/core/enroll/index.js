@@ -130,7 +130,6 @@ const _sfc_main = {
     let weightIndex = common_vendor.ref([]);
     let isWeightTrue = common_vendor.ref(false);
     function pswConfirm(val) {
-      console.log(val);
       if (Number(val) > 0) {
         if (typeP.value === 1) {
           infoP.value.weight = Number(val).toFixed(1);
@@ -157,8 +156,6 @@ const _sfc_main = {
     }
     function propickerChangeGR(e) {
       firstPro.index = e.detail.value;
-      console.log("stuIdx.value", stuIdx.value);
-      console.log("sourceStuList.value", sourceStuList.value);
       sourceStuList.value[stuIdx.value].firstIdx = e.detail.value;
     }
     function proPickerChange2(e) {
@@ -179,7 +176,6 @@ const _sfc_main = {
         if (typeP.value === 1) {
           if (selectData.prefsIndex == 0) {
             if (infoP.value.weight > 0) {
-              console.log("userInfo.name", common_vendor.index.getStorageSync("userInfo").name);
               typeC.value = 1;
               objArr.value = [];
               objArr.value.push({
@@ -208,7 +204,7 @@ const _sfc_main = {
             objArr.value = [];
             selectedStu2.map((item) => {
               objArr.value.push({
-                id: common_vendor.index.getStorageSync("openid"),
+                id: item.id,
                 name: item.name,
                 weight: Number(item.weight)
               });
@@ -228,9 +224,6 @@ const _sfc_main = {
         }
         if (objArr.value.length > 0) {
           obj.value = objArr.value;
-          console.log("obj.value", obj.value);
-          console.log("typeP.value", typeP.value);
-          console.log("obj.value[0].weight", obj.value[0].weight);
           messageToggle("success", "添加成功！");
           enrollList.value = [];
           if (typeP.value === 1) {
@@ -273,7 +266,6 @@ const _sfc_main = {
             }
           }
           selindex.value = 3;
-          console.log("enrollList.value", enrollList.value);
         }
       }
     }
@@ -291,41 +283,97 @@ const _sfc_main = {
     const addr = common_vendor.ref();
     const startTime = common_vendor.ref();
     const endTime = common_vendor.ref();
+    const order_id = common_vendor.ref("");
     function orderCode() {
-      var orderCode2 = "";
+      order_id.value = "";
       for (var i = 0; i < 6; i++) {
-        orderCode2 += Math.floor(Math.random() * 10);
+        order_id.value += Math.floor(Math.random() * 10);
       }
-      orderCode2 = new Date().getTime() + orderCode2;
-      console.log(orderCode2);
-      return orderCode2;
+      order_id.value = new Date().getTime() + order_id.value;
     }
+    const price = common_vendor.ref(0.01);
+    const suiji = common_vendor.ref(0);
     function pay() {
-      console.log("openid", common_vendor.index.getStorageSync("openid"));
+      orderCode();
+      console.log("out_trade", order_id.value);
+      suiji.value = Math.floor(Math.random() * 1e8);
+      console.log("suiji", suiji.value);
+      console.log("obj", obj.value);
+      console.log("order_id.value", order_id.value);
       common_vendor.Es.callFunction({
         name: "getOrderInfo",
         data: {
           openid: common_vendor.index.getStorageSync("openid"),
           name: "测试",
-          out_trade: orderCode(),
+          out_trade: order_id.value,
           //订单号
-          suiji: Math.floor(Math.random() * 1e8),
-          pric: Number(0.01) * 100
+          suiji: suiji.value,
+          pric: price.value * 100
         }
       }).then((odr) => {
         console.log("OrderInfo", odr);
         common_vendor.index.hideLoading();
         common_vendor.index.requestPayment({
           ...odr.result.orderInfo,
-          success() {
+          success(res) {
+            console.log("pay-success-res", res);
             common_vendor.index.showModal({
               title: "支付成功",
               content: "请和顾问联系执行订单即可！"
             });
+            common_vendor.index.request({
+              url: "https://cqshq.top/SelectGame?type=" + Number(typeC.value) + "&mid=" + Number(id.value),
+              method: "POST",
+              header: {
+                "Content-Type": "application/json"
+              },
+              data: obj.value,
+              success(res2) {
+                console.log("报名成功-res", res2);
+              }
+            });
+            common_vendor.index.request({
+              url: "https://cqshq.top/WechatPayCallback",
+              method: "POST",
+              header: {
+                "Content-Type": "application/json"
+              },
+              data: {
+                "age": 0,
+                "sex": 0,
+                "id": common_vendor.index.getStorageSync("openid"),
+                "name": common_vendor.index.getStorageSync("userInfo").name,
+                "birthdate": "2023-03-20T06:27:50.924Z",
+                "organization": common_vendor.index.getStorageSync("userInfo").org,
+                "idCardNumber": "string",
+                "joinInGold": 0,
+                "pic": "string",
+                "base64code1": "string",
+                "gd": [{
+                  "gold_filename": "string",
+                  "base64code2": "string"
+                }],
+                "amount": price.value,
+                "pay_id": order_id.value,
+                "weChat_pay_id": suiji.value
+              },
+              success(res2) {
+                console.log("支付记录更新成功-res", res2);
+              }
+            });
+            common_vendor.Es.callFunction({
+              name: "orderQuery",
+              data: {
+                outTradeNo: order_id.value
+              }
+            }).then((res2) => {
+              console.log("orderQuery-res", res2);
+            });
           },
           fail() {
           },
-          complete() {
+          complete(res) {
+            console.log("pay-complete-res", res);
             console.log("支付完成");
           }
         });
@@ -335,8 +383,6 @@ const _sfc_main = {
     const tmpIdx = common_vendor.ref();
     function changeSel(index) {
       tmpIdx.value = index;
-      console.log("hasPsw.value", hasPsw.value);
-      console.log("index", index);
       if (!common_vendor.index.getStorageSync("isLogin")) {
         if (index === 1 || index === 2 || index === 3) {
           messageToggle("warn", "请先登录!");
@@ -344,16 +390,12 @@ const _sfc_main = {
       } else {
         if (hasPsw.value == 1) {
           selindex.value = index;
-          console.log("不需要输入密码");
         } else {
-          console.log("需要输入密码");
           inputDialog.value.open();
         }
       }
     }
     function dialogInputConfirm(val) {
-      console.log("val", val);
-      console.log("password.value", password.value);
       if (val.length !== 6) {
         messageToggle("warn", "请输入六位数密码！");
       } else {
@@ -369,12 +411,9 @@ const _sfc_main = {
     const password = common_vendor.ref();
     const hasPsw = common_vendor.ref(true);
     common_vendor.onLoad((options) => {
-      console.log("enroll-onload");
-      console.log("options", options);
       if (options.selindex)
         selindex.value = options.selindex;
       if (common_vendor.index.getStorageSync("enrollObj")) {
-        console.log("enrollObj", common_vendor.index.getStorageSync("enrollObj"));
         selindex.value = 0;
         hasPsw.value = common_vendor.index.getStorageSync("enrollObj").hasPsw;
         name.value = common_vendor.index.getStorageSync("enrollObj").data.name;
@@ -391,20 +430,16 @@ const _sfc_main = {
         });
       }
     });
-    const typeP = common_vendor.ref(common_vendor.index.getStorageSync("type"));
+    const typeP = common_vendor.ref(2);
     const userInfo = common_vendor.ref(common_vendor.index.getStorageSync("userInfo"));
     common_vendor.onMounted(() => {
-      console.log("enroll-onMounted");
-      console.log("userInfo.value", userInfo.value);
-      const openid = common_vendor.index.getStorageSync("openid");
-      console.log("openid", openid);
+      common_vendor.index.getStorageSync("openid");
       common_vendor.index.request({
         url: "https://cqshq.top/SendClassmates?org_id=" + common_vendor.index.getStorageSync("userInfo").org_id,
         header: {
           "Content-Type": "application/json"
         },
         success: (res) => {
-          console.log("stu-res", JSON.parse(res.data));
           JSON.parse(res.data).forEach((item) => {
             sourceStuList.value.push({
               id: item.id,
@@ -505,8 +540,10 @@ const _sfc_main = {
         N: common_vendor.o(($event) => signUp(false))
       }) : {}, {
         O: 3 === common_vendor.unref(selindex)
-      }, 3 === common_vendor.unref(selindex) ? {
-        P: common_vendor.f(enrollList.value, (item, index, i0) => {
+      }, 3 === common_vendor.unref(selindex) ? common_vendor.e({
+        P: enrollList.value.length === 0
+      }, enrollList.value.length === 0 ? {} : {
+        Q: common_vendor.f(enrollList.value, (item, index, i0) => {
           return common_vendor.e({
             a: common_vendor.t(item.name),
             b: item.avatarUrl
@@ -522,59 +559,60 @@ const _sfc_main = {
             h: index
           });
         }),
-        Q: typeP.value === 1 && common_vendor.unref(selectData).prefsIndex == 0 || typeP.value === 2 && (common_vendor.unref(selectData2).prefsIndex == 0 || common_vendor.unref(selectData2).prefsIndex == 2),
-        R: typeP.value === 1 && common_vendor.unref(selectData).prefsIndex == 1 || typeP.value === 2 && (common_vendor.unref(selectData2).prefsIndex == 1 || common_vendor.unref(selectData2).prefsIndex == 3),
-        S: common_vendor.unref(selectData).prefsIndex == 1 || common_vendor.unref(selectData2).prefsIndex == 1 || common_vendor.unref(selectData2).prefsIndex == 3,
-        T: common_vendor.o(pay)
-      } : {}, {
-        U: common_vendor.o(pswConfirm),
-        V: common_vendor.p({
+        R: typeP.value === 1 && common_vendor.unref(selectData).prefsIndex == 0 || typeP.value === 2 && (common_vendor.unref(selectData2).prefsIndex == 0 || common_vendor.unref(selectData2).prefsIndex == 2),
+        S: typeP.value === 1 && common_vendor.unref(selectData).prefsIndex == 1 || typeP.value === 2 && (common_vendor.unref(selectData2).prefsIndex == 1 || common_vendor.unref(selectData2).prefsIndex == 3),
+        T: common_vendor.unref(selectData).prefsIndex == 1 || common_vendor.unref(selectData2).prefsIndex == 1 || common_vendor.unref(selectData2).prefsIndex == 3
+      }, {
+        U: common_vendor.o(pay)
+      }) : {}, {
+        V: common_vendor.o(pswConfirm),
+        W: common_vendor.p({
           mode: "input",
           type: "number",
           title: "填写体重（" + stuName.value + "）",
           placeholder: "请输入(kg) (保留一位小数)"
         }),
-        W: common_vendor.sr(popup, "7317ed08-0", {
+        X: common_vendor.sr(popup, "628f6b9f-0", {
           "k": "popup"
         }),
-        X: common_vendor.t(firstPro.arr[firstPro.index]),
-        Y: firstPro.arr,
-        Z: firstPro.index,
-        aa: common_vendor.o(propickerChangeGR),
-        ab: common_vendor.t(secondPro.arr[secondPro.index]),
-        ac: secondPro.arr,
-        ad: secondPro.index,
-        ae: common_vendor.o(proPickerChange2),
-        af: common_vendor.sr(popup2, "7317ed08-2", {
+        Y: common_vendor.t(firstPro.arr[firstPro.index]),
+        Z: firstPro.arr,
+        aa: firstPro.index,
+        ab: common_vendor.o(propickerChangeGR),
+        ac: common_vendor.t(secondPro.arr[secondPro.index]),
+        ad: secondPro.arr,
+        ae: secondPro.index,
+        af: common_vendor.o(proPickerChange2),
+        ag: common_vendor.sr(popup2, "628f6b9f-2", {
           "k": "popup2"
         }),
-        ag: common_vendor.sr("inputClose", "7317ed08-4,7317ed08-3"),
-        ah: common_vendor.o(dialogInputConfirm),
-        ai: common_vendor.p({
+        ah: common_vendor.sr("inputClose", "628f6b9f-4,628f6b9f-3"),
+        ai: common_vendor.o(dialogInputConfirm),
+        aj: common_vendor.p({
           mode: "input",
           title: "报名密码",
           placeholder: "请输入报名密码(6位数) "
         }),
-        aj: common_vendor.sr(inputDialog, "7317ed08-3", {
+        ak: common_vendor.sr(inputDialog, "628f6b9f-3", {
           "k": "inputDialog"
         }),
-        ak: common_vendor.p({
+        al: common_vendor.p({
           type: "dialog"
         }),
-        al: common_vendor.p({
+        am: common_vendor.p({
           type: common_vendor.unref(msgType),
           message: common_vendor.unref(messageText),
           duration: 2e3
         }),
-        am: common_vendor.sr(message, "7317ed08-5", {
+        an: common_vendor.sr(message, "628f6b9f-5", {
           "k": "message"
         }),
-        an: common_vendor.p({
+        ao: common_vendor.p({
           type: "message"
         })
       });
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/pages/core/enroll/index.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/code/vue3/taiquandao/pages/core/enroll/index.vue"]]);
 wx.createPage(MiniProgramPage);

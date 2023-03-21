@@ -168,5 +168,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     f: common_vendor.t(_ctx.errorMessage)
   } : {});
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/uni_modules/song-data-picker/components/song-data-pickerview/song-data-pickerview.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/code/vue3/taiquandao/uni_modules/song-data-picker/components/song-data-pickerview/song-data-pickerview.vue"]]);
 wx.createComponent(Component);

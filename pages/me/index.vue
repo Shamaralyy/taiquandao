@@ -37,7 +37,7 @@
 			<!-- 功能列表内容 -->
 			<view class="me_list_box" v-if="isLogin">
 				<view>
-					<view class="me_list" @tap="toPersonalData">
+					<view class="me_list" @tap="toPage('msg')">
 						<image class="icon" src="/static/9.png"></image>
 						<text>个人信息</text>
 					</view>
@@ -107,6 +107,12 @@
 		user.value.lose = userInfo.lose;
 		user.value.points = user.value.win * 10 + user.value.lose * 5;
 		user.value.avatarUrl = userInfo.photo;
+	}
+	
+	function toPage(route) {
+		uni.navigateTo({
+			url: `/pages/core/`+route+`/index`
+		});
 	}
 
 	function toPersonalData() {

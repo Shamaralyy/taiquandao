@@ -4,7 +4,7 @@
 		<view class="content">
 			<view class="logo-bg">
 				<image class="logo" src="http://39.100.78.225:8002/background.png" mode=""></image>
-				<view style="padding-left:40rpx;padding-top: 60rpx;">
+				<view style="padding-left:40rpx;padding-top: 40rpx;">
 					<view class="rectange" style="background-color: #fff;"></view>
 					<view style="font-size: x-large;font-weight: 700;padding-top: 10rpx;">{{name}}</view>
 					<view style="font-size: xx-small;padding-top: 20rpx;">|{{type}}|</view>

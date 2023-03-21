@@ -4,5 +4,5 @@ const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {
   return {};
 }
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/pages/core/judge/caipan.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/code/vue3/taiquandao/pages/core/judge/caipan.vue"]]);
 wx.createPage(MiniProgramPage);

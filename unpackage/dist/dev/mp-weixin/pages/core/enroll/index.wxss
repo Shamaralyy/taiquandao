@@ -35,10 +35,9 @@
 		transform: translateX(-50%);
 }
 .payBtn {
-		position: absolute;
 		border-radius: 0;
-		right: 10rpx;
-		bottom: 10rpx;
+		margin-top: 30rpx;
+		width: 300rpx;
 }
 .content {
 		width: 100%;
@@ -204,6 +203,10 @@
 .fourth {
 		position: relative;
 		padding-top: 30rpx;
+}
+.fourth .noAdd {
+		margin-left: 320rpx;
+		color: gray;
 }
 .fourth .box {
 		position: relative;

@@ -17,5 +17,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     a: $data.url
   };
 }
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/uni_modules/uni-pay/pages/ad-interactive-webview/ad-interactive-webview.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/code/vue3/taiquandao/uni_modules/uni-pay/pages/ad-interactive-webview/ad-interactive-webview.vue"]]);
 wx.createPage(MiniProgramPage);

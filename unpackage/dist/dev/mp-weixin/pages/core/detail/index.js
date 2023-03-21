@@ -152,14 +152,14 @@ const _sfc_main = {
             b: item
           };
         }),
-        o: common_vendor.sr("inputClose", "5da7b767-1,5da7b767-0"),
+        o: common_vendor.sr("inputClose", "0c79ccec-1,0c79ccec-0"),
         p: common_vendor.o(dialogInputConfirm),
         q: common_vendor.p({
           mode: "input",
           title: "报名密码",
           placeholder: "请输入报名密码(6位数) "
         }),
-        r: common_vendor.sr(inputDialog, "5da7b767-0", {
+        r: common_vendor.sr(inputDialog, "0c79ccec-0", {
           "k": "inputDialog"
         }),
         s: common_vendor.p({
@@ -170,7 +170,7 @@ const _sfc_main = {
           message: common_vendor.unref(messageText),
           duration: 2e3
         }),
-        v: common_vendor.sr(message, "5da7b767-2", {
+        v: common_vendor.sr(message, "0c79ccec-2", {
           "k": "message"
         }),
         w: common_vendor.p({
@@ -180,5 +180,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/刘懿莹/框架/vue/taiquandao/tqd/pages/core/detail/index.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/code/vue3/taiquandao/pages/core/detail/index.vue"]]);
 wx.createPage(MiniProgramPage);
