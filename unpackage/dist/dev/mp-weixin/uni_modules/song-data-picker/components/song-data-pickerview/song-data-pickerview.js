@@ -119,8 +119,12 @@ const _sfc_main = {
   }
 };
 if (!Array) {
-  const _component_uni_load_more = common_vendor.resolveComponent("uni-load-more");
-  _component_uni_load_more();
+  const _easycom_uni_load_more2 = common_vendor.resolveComponent("uni-load-more");
+  _easycom_uni_load_more2();
+}
+const _easycom_uni_load_more = () => "../../../uni-load-more/components/uni-load-more/uni-load-more.js";
+if (!Math) {
+  _easycom_uni_load_more();
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return common_vendor.e({

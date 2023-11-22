@@ -89,7 +89,7 @@ const _sfc_main = {
             provider: "weixin",
             success: async function(res2) {
               console.log("---res----", res2);
-              const openidFn = common_vendor.Es.importObject("openid");
+              const openidFn = common_vendor.Ds.importObject("openid");
               openid.value = await openidFn.getOpenid(res2.code);
               try {
                 common_vendor.index.setStorageSync("openid", openid.value);

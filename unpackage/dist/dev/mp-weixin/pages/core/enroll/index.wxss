@@ -1,246 +1,246 @@
 
 .model {
-		position: absolute;
+  position: absolute;
 }
 
-	/* 项目选择下拉框 */
+/* 项目选择下拉框 */
 .msg_picker {
-		position: relative;
-		top: 16rpx;
-		left: 36rpx;
-		border: 2rpx solid black;
-		font-size: 35rpx;
-		padding-left: 15rpx;
-		width: 500rpx;
+  position: relative;
+  top: 16rpx;
+  left: 36rpx;
+  border: 2rpx solid black;
+  font-size: 35rpx;
+  padding-left: 15rpx;
+  width: 500rpx;
 }
 .h {
-		position: absolute;
-		top: 15rpx;
-		right: 10rpx;
-		width: 0px;
-		border: 20rpx solid transparent;
-		border-top-color: black;
+  position: absolute;
+  top: 15rpx;
+  right: 10rpx;
+  width: 0px;
+  border: 20rpx solid transparent;
+  border-top-color: black;
 }
 .signUpBtn,
-	.confirm-btn {
-		width: 300rpx;
-		background-color: rgb(97, 97, 97);
-		color: #fff;
-		border: 1px solid #fff;
+.confirm-btn {
+  width: 300rpx;
+  background-color: rgb(97, 97, 97);
+  color: #fff;
+  border: 1px solid #fff;
 }
 .confirm-btn {
-		position: absolute;
-		left: 50%;
-		bottom: 40rpx;
-		transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+  bottom: 40rpx;
+  transform: translateX(-50%);
 }
 .payBtn {
-		border-radius: 0;
-		margin-top: 30rpx;
-		width: 300rpx;
+  border-radius: 0;
+  margin-top: 30rpx;
+  width: 300rpx;
 }
 .content {
-		width: 100%;
-		height: 400rpx;
-		position: relative;
+  width: 100%;
+  height: 400rpx;
+  position: relative;
 }
 
-	/* 背景图片 */
+/* 背景图片 */
 .content .background {
-		width: 100%;
-		height: 400rpx;
-		position: absolute;
-		z-index: -1;
+  width: 100%;
+  height: 400rpx;
+  position: absolute;
+  z-index: -1;
 }
 .content .up-text {
-		position: absolute;
-		padding-left: 50rpx;
-		padding-top: 30rpx;
-		font-size: x-large;
-		font-weight: 600;
-		color: white;
-		width: 80%;
-		z-index: 1;
+  position: absolute;
+  padding-left: 50rpx;
+  padding-top: 30rpx;
+  font-size: x-large;
+  font-weight: 600;
+  color: white;
+  width: 80%;
+  z-index: 1;
 }
 .content .bottom {
-		position: relative;
-		padding-left: 50rpx;
-		padding-top: 360rpx;
-		display: flex;
-		z-index: 1;
+  position: relative;
+  padding-left: 50rpx;
+  padding-top: 360rpx;
+  display: flex;
+  z-index: 1;
 }
 .bottom .text {
-		position: absolute;
-		padding-left: 30rpx;
-		font-size: x-small;
-		font-weight: 400;
-		color: white;
+  position: absolute;
+  padding-left: 30rpx;
+  font-size: x-small;
+  font-weight: 400;
+  color: white;
 }
 .recongle {
-		position: relative;
-		margin-top: 5rpx;
-		width: 20rpx;
-		height: 20rpx;
-		background-color: white;
+  position: relative;
+  margin-top: 5rpx;
+  width: 20rpx;
+  height: 20rpx;
+  background-color: white;
 }
 
-	/* 中间选择框 */
+/* 中间选择框 */
 .index-btns {
-		width: 100%;
-		height: 100rpx;
-		position: relative;
-		display: flex;
+  width: 100%;
+  height: 100rpx;
+  position: relative;
+  display: flex;
 }
 .btn {
-		width: 24.7%;
-		height: 100rpx;
-		position: relative;
-		margin-right: 0.4%;
-		background-color: #616161;
+  width: 24.7%;
+  height: 100rpx;
+  position: relative;
+  margin-right: 0.4%;
+  background-color: #616161;
 }
 .btn .text {
-		position: relative;
-		padding-top: 25rpx;
-		padding-left: 30rpx;
-		font-size: medium;
-		color: white;
+  position: relative;
+  padding-top: 25rpx;
+  padding-left: 30rpx;
+  font-size: medium;
+  color: white;
 }
 .first {
-		position: relative;
-		padding-top: 40rpx;
-		padding-left: 50rpx;
+  position: relative;
+  padding-top: 40rpx;
+  padding-left: 50rpx;
 }
 .first .recongle {
-		position: relative;
-		width: 60rpx;
-		height: 15rpx;
-		background-color: black;
+  position: relative;
+  width: 60rpx;
+  height: 15rpx;
+  background-color: black;
 }
 .first .title {
-		position: relative;
-		padding-top: 10rpx;
-		font-size: x-small;
-		font-weight: 300;
+  position: relative;
+  padding-top: 10rpx;
+  font-size: x-small;
+  font-weight: 300;
 }
 .first .text {
-		position: relative;
-		padding-top: 40rpx;
-		font-size: x-small;
-		font-weight: 300;
+  position: relative;
+  padding-top: 40rpx;
+  font-size: x-small;
+  font-weight: 300;
 }
 .second {
-		width: 750rpx;
-		margin-top: 40rpx;
-		margin-left: 25rpx;
+  width: 750rpx;
+  margin-top: 40rpx;
+  margin-left: 25rpx;
 }
 .stu_ipt {
-		width: 685rpx;
-		height: 70rpx;
-		color: black;
-		padding-left: 16rpx;
-		margin-top: 40rpx;
-		margin-left: 25rpx;
-		border: 1px solid #404040;
-		border-radius: 30rpx;
+  width: 685rpx;
+  height: 70rpx;
+  color: black;
+  padding-left: 16rpx;
+  margin-top: 40rpx;
+  margin-left: 25rpx;
+  border: 1px solid #404040;
+  border-radius: 30rpx;
 }
 .stu_box {
-		float: left;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		width: 150rpx;
-		height: 210rpx;
-		margin: 13rpx;
-		color: #fff;
-		font-size: 24rpx;
-		background-color: rgb(97, 97, 97);
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  height: 210rpx;
+  margin: 13rpx;
+  color: #fff;
+  font-size: 24rpx;
+  background-color: rgb(97, 97, 97);
 }
 .active {
-		background-color: rgb(197, 197, 197);
+  background-color: rgb(197, 197, 197);
 }
 .stu_box image {
-		width: 100rpx;
-		height: 100rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 .avatar {
-		height: 80px;
-		width: 80px;
-		border-radius: 40px;
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
 }
 .thrid {
-		position: relative;
-		padding-top: 50rpx;
-		margin-left: 76rpx;
+  position: relative;
+  padding-top: 50rpx;
+  margin-left: 76rpx;
 }
 .thrid .box {
-		position: relative;
-		margin: 0% auto;
-		width: 80%;
-		height: 150rpx;
-		background-color: #404040;
+  position: relative;
+  margin: 0% auto;
+  width: 80%;
+  height: 150rpx;
+  background-color: #404040;
 }
 .thrid .recongle {
-		position: relative;
-		width: 20%;
-		height: 40rpx;
-		background-color: white;
+  position: relative;
+  width: 20%;
+  height: 40rpx;
+  background-color: white;
 }
 .thrid .top {
-		position: relative;
-		padding-left: 20rpx;
-		font-size: large;
-		font-weight: 500;
+  position: relative;
+  padding-left: 20rpx;
+  font-size: large;
+  font-weight: 500;
 }
 .thrid .text {
-		position: relative;
-		padding-left: 40rpx;
-		padding-top: 0rpx;
-		font-size: x-large;
-		font-weight: 700;
-		color: white;
+  position: relative;
+  padding-left: 40rpx;
+  padding-top: 0rpx;
+  font-size: x-large;
+  font-weight: 700;
+  color: white;
 }
 .fourth {
-		position: relative;
-		padding-top: 30rpx;
+  position: relative;
+  padding-top: 30rpx;
 }
 .fourth .noAdd {
-		margin-left: 320rpx;
-		color: gray;
+  margin-left: 320rpx;
+  color: gray;
 }
 .fourth .box {
-		position: relative;
-		margin-top: 25rpx;
-		height: 180rpx;
-		width: 100%;
-		background-color: #818181;
+  position: relative;
+  margin-top: 25rpx;
+  height: 180rpx;
+  width: 100%;
+  background-color: #818181;
 }
 .fourth .top {
-		text-align: center;
-		padding-top: 6rpx;
-		font-size: 30rpx;
-		font-weight: 400;
-		color: white;
+  text-align: center;
+  padding-top: 6rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  color: white;
 }
 .fourth .recongle {
-		position: relative;
-		width: 2%;
-		height: 60rpx;
-		margin-top: 34rpx;
-		margin-left: 60rpx;
+  position: relative;
+  width: 2%;
+  height: 60rpx;
+  margin-top: 34rpx;
+  margin-left: 60rpx;
 }
 .fourth .a {
-		position: relative;
-		height: 50px;
-		width: 50px;
-		border-radius: 25px;
-		margin-bottom: 10rpx;
+  position: relative;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  margin-bottom: 10rpx;
 }
 .fourth .text {
-		position: relative;
-		padding-left: 20rpx;
-		padding-top: 30rpx;
-		font-size: small;
-		font-weight: 200;
-		color: white;
+  position: relative;
+  padding-left: 20rpx;
+  padding-top: 30rpx;
+  font-size: small;
+  font-weight: 200;
+  color: white;
 }

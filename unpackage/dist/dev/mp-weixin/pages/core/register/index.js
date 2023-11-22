@@ -25,11 +25,15 @@ const _sfc_main = {
     let baseHjzm = common_vendor.ref([]);
     common_vendor.ref(false);
     common_vendor.ref([]);
-    let hjzmArr = common_vendor.ref([{
-      "gold_filename": null,
-      "base64code2": null
-    }]);
-    let avatarSrc = common_vendor.ref("https://img-qn.51miz.com/Element/00/41/38/39/407da9aa_E413839_a95d89b1.png");
+    let hjzmArr = common_vendor.ref([
+      {
+        gold_filename: null,
+        base64code2: null
+      }
+    ]);
+    let avatarSrc = common_vendor.ref(
+      "https://img-qn.51miz.com/Element/00/41/38/39/407da9aa_E413839_a95d89b1.png"
+    );
     let baseAvatar = common_vendor.ref("");
     let avatarName = common_vendor.ref("");
     let marList = common_vendor.ref([]);
@@ -102,7 +106,6 @@ const _sfc_main = {
     function onnodeclick(node) {
       userMsg.value.marName = node.text;
       org_id.value = node.value;
-      console.log("org_id.value", org_id.value);
     }
     function changeCheck() {
       isChecked.value = !isChecked.value;
@@ -164,18 +167,6 @@ const _sfc_main = {
         userMsg.value.sexNum = 0;
       }
       if (baseAvatar.value === "" || userMsg.value.name === "" || userMsg.value.marName === "" || userMsg.value.IDcard === "" || userMsg.value.sex === "未知" || userMsg.value.date === "请选择出生日期" || userMsg.value.isDeclared === "" || avatarName.value === "") {
-        console.log("age", Number(utils_utils.getAge(userMsg.value.date)));
-        console.log("sex", Number(userMsg.value.sexNum));
-        console.log("id", openid.value);
-        console.log("name", String(userMsg.value.name));
-        console.log("birthdate", String(userMsg.value.date));
-        console.log("userMsg.value.date", userMsg.value.date);
-        console.log("organization", String(userMsg.value.marName));
-        console.log("idCardNumber", String(userMsg.value.IDcard));
-        console.log("joinInGold", Number(userMsg.value.isDeclared));
-        console.log("pic", avatarName.value.slice(0, avatarName.value.length - 4));
-        console.log("base64code1", String(baseAvatar.value.slice(22)));
-        console.log("gd", hjzmArr.value);
         messageToggle("error", "请确保信息填写完整!");
       } else {
         if (isChecked.value === false) {
@@ -186,16 +177,18 @@ const _sfc_main = {
           if (userMsg.value.isDeclared === "true" && baseHjzm.value.length === 0) {
             messageToggle("warn", "需提供获奖证明");
           } else {
-            hjzmArr.value = [{
-              "gold_filename": null,
-              "base64code2": null
-            }];
+            hjzmArr.value = [
+              {
+                gold_filename: null,
+                base64code2: null
+              }
+            ];
             if (userMsg.value.isDeclared) {
               hjzmArr.value = [];
               for (let i = 0; i < hjzm.value.length; i++) {
                 hjzmArr.value.push({
-                  "gold_filename": null,
-                  "base64code2": null
+                  gold_filename: null,
+                  base64code2: null
                 });
                 hjzmArr.value[i].gold_filename = hjzm.value[i];
                 hjzmArr.value[i].base64code2 = baseHjzm.value[i];
@@ -209,17 +202,17 @@ const _sfc_main = {
                   "Content-Type": "application/json"
                 },
                 data: {
-                  "age": Number(utils_utils.getAge(userMsg.value.date)),
-                  "sex": Number(userMsg.value.sexNum),
-                  "id": openid.value,
-                  "name": String(userMsg.value.name),
-                  "birthdate": String(userMsg.value.date),
-                  "organization": String(userMsg.value.marName),
-                  "idCardNumber": String(userMsg.value.IDcard),
-                  "joinInGold": Number(userMsg.value.isDeclared),
-                  "pic": avatarName.value.slice(0, avatarName.value.length - 4),
-                  "base64code1": String(baseAvatar.value.slice(22)),
-                  "gd": hjzmArr.value
+                  age: Number(utils_utils.getAge(userMsg.value.date)),
+                  sex: Number(userMsg.value.sexNum),
+                  id: openid.value,
+                  name: String(userMsg.value.name),
+                  birthdate: String(userMsg.value.date),
+                  organization: String(userMsg.value.marName),
+                  idCardNumber: String(userMsg.value.IDcard),
+                  joinInGold: Number(userMsg.value.isDeclared),
+                  pic: avatarName.value.slice(0, avatarName.value.length - 4),
+                  base64code1: String(baseAvatar.value.slice(22)),
+                  gd: hjzmArr.value
                 },
                 success: (res) => {
                   console.log("reg-res", res);
@@ -242,20 +235,19 @@ const _sfc_main = {
                   "Content-Type": "application/json"
                 },
                 data: {
-                  "age": Number(utils_utils.getAge(userMsg.value.date)),
-                  "sex": Number(userMsg.value.sexNum),
-                  "id": openid.value,
-                  "name": String(userMsg.value.name),
-                  "birthdate": String(userMsg.value.date),
-                  "organization": String(userMsg.value.marName),
-                  "idCardNumber": String(userMsg.value.IDcard),
-                  "joinInGold": Number(userMsg.value.isDeclared),
-                  "pic": avatarName.value.slice(0, avatarName.value.length - 4),
-                  "base64code1": String(baseAvatar.value.slice(22)),
-                  "gd": hjzmArr.value
+                  age: Number(utils_utils.getAge(userMsg.value.date)),
+                  sex: Number(userMsg.value.sexNum),
+                  id: openid.value,
+                  name: String(userMsg.value.name),
+                  birthdate: String(userMsg.value.date),
+                  organization: String(userMsg.value.marName),
+                  idCardNumber: String(userMsg.value.IDcard),
+                  joinInGold: Number(userMsg.value.isDeclared),
+                  pic: avatarName.value.slice(0, avatarName.value.length - 4),
+                  base64code1: String(baseAvatar.value.slice(22)),
+                  gd: hjzmArr.value
                 },
                 success: (res) => {
-                  console.log("reg-res", res);
                   if (res.statusCode === 400) {
                     messageToggle("warn", "您已注册！");
                   } else {
@@ -276,10 +268,7 @@ const _sfc_main = {
     }
     function IdCard(IdCard2, type) {
       if (type === 1) {
-        let birthday = IdCard2.substring(6, 10) + "-" + IdCard2.substring(10, 12) + "-" + IdCard2.substring(
-          12,
-          14
-        );
+        let birthday = IdCard2.substring(6, 10) + "-" + IdCard2.substring(10, 12) + "-" + IdCard2.substring(12, 14);
         return birthday;
       }
       if (type === 2) {
@@ -301,22 +290,18 @@ const _sfc_main = {
           let marlist = [];
           JSON.parse(res.data).forEach((item) => {
             marlist.push({
-              "text": item.name,
-              "value": item.id
+              text: item.name,
+              value: item.id
             });
           });
           marList.value = marlist;
-          console.log("marList.value1 ", marList.value);
         }
       });
-      console.log("marList.value2", marList.value);
     });
     common_vendor.onLoad((options) => {
       addStu.value = options.addStu;
-      console.log("addStu.value", addStu.value);
       if (addStu.value)
         openid.value = "000000";
-      console.log("openid.value", openid.value);
     });
     return (_ctx, _cache) => {
       return {

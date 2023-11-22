@@ -34,11 +34,8 @@ const _sfc_main = {
     function click(e) {
       let index = e.currentTarget.dataset.code;
       data.value.current = index;
-      console.log("data.value", data.value.current);
     }
     function login() {
-      console.log("账号：", log.value.account);
-      console.log("密码：", log.value.password);
       if (log.value.account === "" || log.value.password === null) {
         messageToggle("warn", "请输入完整的信息");
       } else {

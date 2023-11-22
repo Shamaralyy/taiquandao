@@ -46,14 +46,12 @@ const _sfc_main = {
       message.value.open();
     }
     function navToEnroll(hasPsw) {
-      console.log("password.value", password.value);
       let enrollObj = {
         id: id.value,
         password: password.value,
         data,
         hasPsw
       };
-      console.log("enrollObj", enrollObj);
       common_vendor.index.setStorageSync("enrollObj", enrollObj);
       common_vendor.index.navigateTo({
         url: "/pages/core/enroll/index?id=" + encodeURIComponent(JSON.stringify(id.value)) + "&password=" + encodeURIComponent(JSON.stringify(password.value)) + "&data=" + encodeURIComponent(JSON.stringify(data)) + "&hasPsw=" + hasPsw
@@ -83,8 +81,6 @@ const _sfc_main = {
             navToEnroll(1);
           }, 100);
         } else {
-          console.log("password.value", password.value);
-          console.log("val", val);
           messageToggle("error", "密码错误!");
         }
       }
@@ -105,31 +101,30 @@ const _sfc_main = {
           "Content-Type": "application/json"
         },
         success: (res) => {
-          console.log("SendGamesDetails-res", JSON.parse(res.data));
-          name.value = JSON.parse(res.data).name;
-          type.value = JSON.parse(res.data).type;
-          address.value = JSON.parse(res.data).address;
-          info.value = JSON.parse(res.data).info;
-          startTime.value = JSON.parse(res.data).startTime;
-          endTime.value = JSON.parse(res.data).endTime;
-          competeTime.value = JSON.parse(res.data).competeTime;
-          ContactsTel.value = JSON.parse(res.data).ContactsTel;
-          remainingDays.value = JSON.parse(res.data).remainingDays;
-          JSON.parse(res.data).sponsor.split("\n").forEach((item, index) => {
+          const result = JSON.parse(res.data);
+          console.log("SendGamesDetails-res", result);
+          name.value = result.name;
+          type.value = result.type;
+          address.value = result.address;
+          info.value = result.info;
+          startTime.value = result.startTime;
+          endTime.value = result.endTime;
+          competeTime.value = result.competeTime;
+          ContactsTel.value = result.ContactsTel;
+          remainingDays.value = result.remainingDays;
+          result.sponsor.split("\n").forEach((item, index) => {
             sponsor.value.push(item);
           });
-          data.announcement = JSON.parse(res.data).announcement;
-          data.rule = JSON.parse(res.data).rule;
-          data.name = JSON.parse(res.data).name;
-          data.address = JSON.parse(res.data).address;
-          data.startTime = JSON.parse(res.data).startTime;
-          data.endTime = JSON.parse(res.data).endTime;
-          common_vendor.index.setStorageSync("password", JSON.parse(res.data).psw);
-          password.value = JSON.parse(res.data).psw;
-          console.log("password111", password.value);
+          data.announcement = result.announcement;
+          data.rule = result.rule;
+          data.name = result.name;
+          data.address = result.address;
+          data.startTime = result.startTime;
+          data.endTime = result.endTime;
+          common_vendor.index.setStorageSync("password", result.psw);
+          password.value = result.psw;
         }
       });
-      console.log("password.value", password.value);
     });
     return (_ctx, _cache) => {
       return {

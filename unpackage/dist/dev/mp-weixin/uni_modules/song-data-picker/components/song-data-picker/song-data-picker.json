@@ -2,7 +2,9 @@
   "component": true,
   "usingComponents": {
     "data-picker-view": "../song-data-pickerview/song-data-pickerview",
+    "uni-load-more": "../../../uni-load-more/components/uni-load-more/uni-load-more",
     "uni-icons": "../../../uni-icons/components/uni-icons/uni-icons",
+    "uni-easyinput": "../../../uni-easyinput/components/uni-easyinput/uni-easyinput",
     "uni-list-item": "../../../uni-list/components/uni-list-item/uni-list-item"
   }
 }

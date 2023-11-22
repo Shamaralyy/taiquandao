@@ -62,12 +62,30 @@ const _sfc_main = {
     const firstPro = common_vendor.reactive({
       // 下拉框选项
       index: 0,
-      arr: ["太极一章", "太极二章", "太极三章", "太极四章", "太极五章", "太极六章", "太极七章", "太极八章"]
+      arr: [
+        "太极一章",
+        "太极二章",
+        "太极三章",
+        "太极四章",
+        "太极五章",
+        "太极六章",
+        "太极七章",
+        "太极八章"
+      ]
     });
     const secondPro = common_vendor.reactive({
       // 下拉框选项
       index: 0,
-      arr: ["太极一章", "太极二章", "太极三章", "太极四章", "太极五章", "太极六章", "太极七章", "太极八章"]
+      arr: [
+        "太极一章",
+        "太极二章",
+        "太极三章",
+        "太极四章",
+        "太极五章",
+        "太极六章",
+        "太极七章",
+        "太极八章"
+      ]
     });
     const enrollList = common_vendor.ref([]);
     let message = common_vendor.ref();
@@ -82,7 +100,9 @@ const _sfc_main = {
     const sourceStuList = common_vendor.ref([]);
     const stuList = common_vendor.ref(sourceStuList.value);
     function filterStu() {
-      stuList.value = sourceStuList.value.filter((item) => item.name.indexOf(stuVal.value) != -1);
+      stuList.value = sourceStuList.value.filter(
+        (item) => item.name.indexOf(stuVal.value) != -1
+      );
     }
     let selStu = common_vendor.ref([]);
     const popup = common_vendor.ref();
@@ -170,9 +190,15 @@ const _sfc_main = {
       if (flag) {
         selindex.value = 2;
         enrollMsg.value = tmp_enrollMsg.value;
-        goodsId.value = [Number(selectData.prefsIndex) + 1, Number(selectData.alternate1Index) + 1, Number(selectData.alternate2Index) + 1];
+        goodsId.value = [
+          Number(selectData.prefsIndex) + 1,
+          Number(selectData.alternate1Index) + 1,
+          Number(selectData.alternate2Index) + 1
+        ];
       } else {
-        const selectedStu = sourceStuList.value.filter((item) => item.state === true);
+        const selectedStu = sourceStuList.value.filter(
+          (item) => item.state === true
+        );
         if (typeP.value === 1) {
           if (selectData.prefsIndex == 0) {
             if (infoP.value.weight > 0) {
@@ -200,7 +226,9 @@ const _sfc_main = {
         } else if (typeP.value === 2) {
           typeC.value = 2;
           if (selectData2.prefsIndex == 0 || selectData2.prefsIndex == 2) {
-            const selectedStu2 = sourceStuList.value.filter((item) => item.state === true);
+            const selectedStu2 = sourceStuList.value.filter(
+              (item) => item.state === true
+            );
             objArr.value = [];
             selectedStu2.map((item) => {
               objArr.value.push({
@@ -295,12 +323,8 @@ const _sfc_main = {
     const suiji = common_vendor.ref(0);
     function pay() {
       orderCode();
-      console.log("out_trade", order_id.value);
       suiji.value = Math.floor(Math.random() * 1e8);
-      console.log("suiji", suiji.value);
-      console.log("obj", obj.value);
-      console.log("order_id.value", order_id.value);
-      common_vendor.Es.callFunction({
+      common_vendor.Ds.callFunction({
         name: "getOrderInfo",
         data: {
           openid: common_vendor.index.getStorageSync("openid"),
@@ -339,29 +363,31 @@ const _sfc_main = {
                 "Content-Type": "application/json"
               },
               data: {
-                "age": 0,
-                "sex": 0,
-                "id": common_vendor.index.getStorageSync("openid"),
-                "name": common_vendor.index.getStorageSync("userInfo").name,
-                "birthdate": "2023-03-20T06:27:50.924Z",
-                "organization": common_vendor.index.getStorageSync("userInfo").org,
-                "idCardNumber": "string",
-                "joinInGold": 0,
-                "pic": "string",
-                "base64code1": "string",
-                "gd": [{
-                  "gold_filename": "string",
-                  "base64code2": "string"
-                }],
-                "amount": price.value,
-                "pay_id": order_id.value,
-                "weChat_pay_id": suiji.value
+                age: 0,
+                sex: 0,
+                id: common_vendor.index.getStorageSync("openid"),
+                name: common_vendor.index.getStorageSync("userInfo").name,
+                birthdate: "2023-03-20T06:27:50.924Z",
+                organization: common_vendor.index.getStorageSync("userInfo").org,
+                idCardNumber: "string",
+                joinInGold: 0,
+                pic: "string",
+                base64code1: "string",
+                gd: [
+                  {
+                    gold_filename: "string",
+                    base64code2: "string"
+                  }
+                ],
+                amount: price.value,
+                pay_id: order_id.value,
+                weChat_pay_id: suiji.value
               },
               success(res2) {
                 console.log("支付记录更新成功-res", res2);
               }
             });
-            common_vendor.Es.callFunction({
+            common_vendor.Ds.callFunction({
               name: "orderQuery",
               data: {
                 outTradeNo: order_id.value
@@ -374,7 +400,6 @@ const _sfc_main = {
           },
           complete(res) {
             console.log("pay-complete-res", res);
-            console.log("支付完成");
           }
         });
       });

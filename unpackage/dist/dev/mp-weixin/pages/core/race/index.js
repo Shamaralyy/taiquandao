@@ -29,15 +29,13 @@ const _sfc_main = {
           let marlist = [];
           JSON.parse(res.data).forEach((item) => {
             marlist.push({
-              "text": item.name,
-              "value": (i++).toString()
+              text: item.name,
+              value: (i++).toString()
             });
           });
           marList.value = marlist;
-          console.log("marList.value1 ", marList.value);
         }
       });
-      console.log("marList.value2", marList.value);
     });
     return (_ctx, _cache) => {
       return {

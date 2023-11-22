@@ -35,37 +35,22 @@ const _sfc_main = {
         url: "/pages/core/detail/index?id=" + item.id
       });
     }
+    function getList(type, id, val) {
+      common_vendor.index.request({
+        url: `https://cqshq.top/SendGamesInfo?type=${type}&id=${id}`,
+        header: {
+          "Content-Type": "application/json"
+        },
+        success: (res) => {
+          console.log(`race${id}-res`, JSON.parse(res.data));
+          JSON.parse(res.data);
+        }
+      });
+    }
     const showList = () => {
-      common_vendor.index.request({
-        url: "https://cqshq.top/SendGamesInfo?type=3&id=0",
-        header: {
-          "Content-Type": "application/json"
-        },
-        success: (res) => {
-          console.log("race3-res", JSON.parse(res.data));
-          gjs.value = JSON.parse(res.data);
-        }
-      });
-      common_vendor.index.request({
-        url: "https://cqshq.top/SendGamesInfo?type=1&id=0",
-        header: {
-          "Content-Type": "application/json"
-        },
-        success: (res) => {
-          console.log("race1-res", JSON.parse(res.data));
-          xss.value = JSON.parse(res.data);
-        }
-      });
-      common_vendor.index.request({
-        url: "https://cqshq.top/SendGamesInfo?id=0&type=2",
-        header: {
-          "Content-Type": "application/json"
-        },
-        success: (res) => {
-          console.log("race2-res", JSON.parse(res.data));
-          djs.value = JSON.parse(res.data);
-        }
-      });
+      getList(1, 0, xss.value);
+      getList(2, 0, djs.value);
+      getList(3, 0, gjs.value);
     };
     showList();
     return (_ctx, _cache) => {

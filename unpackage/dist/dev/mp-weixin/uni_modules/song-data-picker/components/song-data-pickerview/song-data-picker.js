@@ -186,7 +186,7 @@ const dataPicker = {
       this._treeData = [];
     },
     getCommand(options = {}) {
-      let db = common_vendor.Es.database(this.spaceInfo);
+      let db = common_vendor.Ds.database(this.spaceInfo);
       const action = options.action || this.action;
       if (action) {
         db = db.action(action);
