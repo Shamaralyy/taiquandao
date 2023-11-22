@@ -336,6 +336,8 @@
 <script setup>
 import { ref, reactive, onMounted } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
+import { selectGameAPI, wechatPayCallbackAPI } from "@/API/enroll.js";
+
 let typeList = reactive([
   {
     id: 1,
@@ -715,60 +717,51 @@ function pay() {
         // #ifdef MP-WEIXIN
         ...odr.result.orderInfo,
         // #endif
-        success(res) {
+        async success(res) {
           console.log("pay-success-res", res);
           uni.showModal({
             title: "支付成功",
             content: "请和顾问联系执行订单即可！",
           });
           //缴费后调用报名接口
-          uni.request({
-            url:
-              "https://cqshq.top/SelectGame?type=" +
-              Number(typeC.value) +
-              "&mid=" +
+          try {
+            let res = selectGameAPI(
+              Number(typeC.value),
               Number(id.value),
-            method: "POST",
-            header: {
-              "Content-Type": "application/json",
-            },
-            data: obj.value,
-            success(res) {
-              console.log("报名成功-res", res);
-            },
-          });
+              obj.value
+            );
+            console.log("报名成功-res", res);
+          } catch (e) {
+            console.error(e);
+          }
           //缴费后调用支付记录接口
-          uni.request({
-            url: "https://cqshq.top/WechatPayCallback",
-            method: "POST",
-            header: {
-              "Content-Type": "application/json",
-            },
-            data: {
-              age: 0,
-              sex: 0,
-              id: uni.getStorageSync("openid"),
-              name: uni.getStorageSync("userInfo").name,
-              birthdate: "2023-03-20T06:27:50.924Z",
-              organization: uni.getStorageSync("userInfo").org,
-              idCardNumber: "string",
-              joinInGold: 0,
-              pic: "string",
-              base64code1: "string",
-              gd: [
-                {
-                  gold_filename: "string",
-                  base64code2: "string",
-                },
-              ],
-              amount: price.value,
-              pay_id: order_id.value,
-              weChat_pay_id: suiji.value,
-            },
-            success(res) {
-              console.log("支付记录更新成功-res", res);
-            },
-          });
+          const obj = {
+            age: 0,
+            sex: 0,
+            id: uni.getStorageSync("openid"),
+            name: uni.getStorageSync("userInfo").name,
+            birthdate: "2023-03-20T06:27:50.924Z",
+            organization: uni.getStorageSync("userInfo").org,
+            idCardNumber: "string",
+            joinInGold: 0,
+            pic: "string",
+            base64code1: "string",
+            gd: [
+              {
+                gold_filename: "string",
+                base64code2: "string",
+              },
+            ],
+            amount: price.value,
+            pay_id: order_id.value,
+            weChat_pay_id: suiji.value,
+          };
+          try {
+            let res = await wechatPayCallbackAPI(obj);
+            console.log("支付记录更新成功-res", res);
+          } catch (e) {
+            console.error(e);
+          }
           uniCloud
             .callFunction({
               name: "orderQuery",

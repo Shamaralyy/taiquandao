@@ -117,6 +117,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
+import { detailAPI } from "@/API/detail.js";
 const id = ref();
 const name = ref();
 const type = ref();
@@ -215,37 +216,45 @@ onLoad((options) => {
   data.id = id.value;
 });
 //接收race传递的参数
-onMounted(() => {
-  uni.request({
-    url: "https://cqshq.top/SendGamesDetails?id=" + id.value,
-    header: {
-      "Content-Type": "application/json",
-    },
-    success: (res) => {
-      const result = JSON.parse(res.data);
-      console.log("SendGamesDetails-res", result);
-      name.value = result.name;
-      type.value = result.type;
-      address.value = result.address;
-      info.value = result.info;
-      startTime.value = result.startTime;
-      endTime.value = result.endTime;
-      competeTime.value = result.competeTime;
-      ContactsTel.value = result.ContactsTel;
-      remainingDays.value = result.remainingDays;
-      result.sponsor.split("\n").forEach((item, index) => {
-        sponsor.value.push(item);
-      });
-      data.announcement = result.announcement;
-      data.rule = result.rule;
-      data.name = result.name;
-      data.address = result.address;
-      data.startTime = result.startTime;
-      data.endTime = result.endTime;
-      uni.setStorageSync("password", result.psw);
-      password.value = result.psw;
-    },
-  });
+onMounted(async () => {
+  try {
+    let res = await detailAPI(id.value);
+    const result = JSON.parse(res.data);
+    console.log("SendGamesDetails-res", result);
+    const {
+      name,
+      type,
+      address,
+      info,
+      startTime,
+      endTime,
+      competeTime,
+      ContactsTel,
+      remainingDays,
+      sponsor: resultSponsor,
+      announcement,
+      rule,
+      psw: resultPassword,
+    } = result;
+    name.value = data.name = name;
+    type.value = data.type = type;
+    address.value = data.address = address;
+    info.value = data.info = info;
+    startTime.value = data.startTime = startTime;
+    endTime.value = data.endTime = endTime;
+    competeTime.value = data.competeTime = competeTime;
+    ContactsTel.value = data.ContactsTel = ContactsTel;
+    remainingDays.value = data.remainingDays = remainingDays;
+    resultSponsor.split("\n").forEach((item) => {
+      sponsor.value.push(item);
+    });
+    data.announcement = announcement;
+    data.rule = rule;
+    uni.setStorageSync("password", resultPassword);
+    password.value = resultPassword;
+  } catch (e) {
+    console.error(e);
+  }
 });
 </script>
 
