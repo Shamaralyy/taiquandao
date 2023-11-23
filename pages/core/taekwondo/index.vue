@@ -126,23 +126,20 @@
 
 <script setup>
 import { ref } from "vue";
+import { sendGamesInfoAPI } from "@/API/taekwondo.js";
+
 let tags = ["跆拳道", "排名赛", "选拔赛", "比赛等级", "各种标签"];
 let n = ref(1);
 let gjs = ref([]); // 冠军赛
 let xss = ref([]); //新手赛
 let djs = ref([]); //对决赛
 //触底事件
-function toLowerReq(racelist, type) {
+async function toLowerReq(racelist, type) {
   let id = racelist.value[racelist.value.length - 1].id;
-  uni.request({
-    url: "https://cqshq.top/SendGamesInfo?id=" + id + "&type=" + type,
-    header: {
-      "Content-Type": "application/json",
-    },
-    success: (res) => {
-      racelist.value.push(res.data);
-    },
-  });
+  try {
+    let res = await sendGamesInfoAPI(id, type);
+    racelist.value.push(res.data);
+  } catch (e) {}
 }
 
 function handleToLower() {
@@ -163,17 +160,12 @@ function toDetail(item) {
   });
 }
 
-function getList(type, id, val) {
-  uni.request({
-    url: `https://cqshq.top/SendGamesInfo?type=${type}&id=${id}`,
-    header: {
-      "Content-Type": "application/json",
-    },
-    success: (res) => {
-      console.log(`race${id}-res`, JSON.parse(res.data));
-      val = JSON.parse(res.data);
-    },
-  });
+async function getList(type, id, val) {
+  try {
+    let res = await sendGamesInfoAPI(id, type);
+    console.log(`race${id}-res`, JSON.parse(res.data));
+    val = JSON.parse(res.data);
+  } catch (e) {}
 }
 
 const showList = () => {

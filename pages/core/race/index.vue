@@ -112,32 +112,27 @@
 
 <script setup>
 import { ref, reactive, getCurrentInstance, onMounted } from "vue";
+import { sendOrgsInfoAPI } from "@/API/race.js";
+
 let n = ref(1);
 let marList = ref([]); //武馆
-function onchange(e) {
-  const value = e.detail.value;
-}
+function onchange(e) {}
 
 function onnodeclick(node) {}
 //获取武馆列表
-onMounted(() => {
-  uni.request({
-    url: "https://cqshq.top/SendOrgsInfo",
-    header: {
-      "Content-Type": "application/json",
-    },
-    success: (res) => {
-      let i = 1;
-      let marlist = [];
-      JSON.parse(res.data).forEach((item) => {
-        marlist.push({
-          text: item.name,
-          value: (i++).toString(),
-        });
+onMounted(async () => {
+  try {
+    let res = await sendOrgsInfoAPI();
+    let i = 1;
+    let marlist = [];
+    JSON.parse(res.data).forEach((item) => {
+      marlist.push({
+        text: item.name,
+        value: (i++).toString(),
       });
-      marList.value = marlist;
-    },
-  });
+    });
+    marList.value = marlist;
+  } catch (e) {}
 });
 </script>
 <style>

@@ -126,6 +126,10 @@ import { pathToBase64, base64ToPath } from "image-tools";
 import { testReg, getAge } from "@/utils/utils.js";
 import { onLoad } from "@dcloudio/uni-app";
 import avatar from "@/components/yq-avatar/yq-avatar.vue";
+import { loginAPI } from "@/API/login.js";
+import { sendOrgsInfoAPI } from "@/API/race.js";
+import { addPlayerAPI, getUsersInfoAPI } from "@/API/register.js";
+
 const openid = ref(uni.getStorageSync("openid"));
 //获奖证明
 let isShow = ref(false);
@@ -164,6 +168,27 @@ let messageText = ref("这是一条成功提示");
 //refs
 let files = ref();
 let index = ref();
+
+onLoad((options) => {
+  addStu.value = options.addStu;
+  if (addStu.value) openid.value = "000000";
+});
+
+//获取武馆列表
+onMounted(async () => {
+  try {
+    let res = await sendOrgsInfoAPI();
+    console.log("SendOrgsInfo-res", res);
+    let marlist = [];
+    JSON.parse(res.data).forEach((item) => {
+      marlist.push({
+        text: item.name,
+        value: item.id,
+      });
+    });
+    marList.value = marlist;
+  } catch (e) {}
+});
 
 function getIndex(e) {
   index.value = e;
@@ -214,9 +239,7 @@ function select(e) {
   });
 }
 
-function onchange(e) {
-  const value = e.detail.value;
-}
+function onchange(e) {}
 
 //选择武馆
 const org_id = ref();
@@ -257,7 +280,7 @@ function identifyIDcard() {
 
 const addStu = ref(false);
 
-function getInfo() {
+async function getInfo() {
   if (addStu.value) {
     setTimeout(() => {
       uni.navigateTo({
@@ -265,28 +288,23 @@ function getInfo() {
       });
     }, 50);
   } else {
-    uni.request({
-      url: "https://cqshq.top/Login?id=" + openid.value,
-      header: {
-        "Content-Type": "application/json",
-      },
-      success: (res) => {
-        console.log("Login-res", res);
-        uni.setStorageSync("userInfo", res.data);
-        uni.setStorageSync("type", res.data.type);
-        uni.setStorageSync("isLogin", true);
-        //提交后 登录状态变更为true
-        setTimeout(() => {
-          uni.reLaunch({
-            url: "/pages/me/index",
-          });
-        }, 50);
-      },
-    });
+    try {
+      let res = await loginAPI(openid.value);
+      console.log("Login-res", res);
+      uni.setStorageSync("userInfo", res.data);
+      uni.setStorageSync("type", res.data.type);
+      uni.setStorageSync("isLogin", true);
+      //提交后 登录状态变更为true
+      setTimeout(() => {
+        uni.reLaunch({
+          url: "/pages/me/index",
+        });
+      }, 50);
+    } catch (e) {}
   }
 }
 
-function postPersonalData() {
+async function postPersonalData() {
   if (userMsg.value.sex === "男") {
     userMsg.value.sexNum = 1;
   } else {
@@ -333,71 +351,45 @@ function postPersonalData() {
             hjzmArr.value[i].base64code2 = baseHjzm.value[i];
           }
         }
+        const obj = {
+          age: Number(getAge(userMsg.value.date)),
+          sex: Number(userMsg.value.sexNum),
+          id: openid.value,
+          name: String(userMsg.value.name),
+          birthdate: String(userMsg.value.date),
+          organization: String(userMsg.value.marName),
+          idCardNumber: String(userMsg.value.IDcard),
+          joinInGold: Number(userMsg.value.isDeclared),
+          pic: avatarName.value.slice(0, avatarName.value.length - 4),
+          base64code1: String(baseAvatar.value.slice(22)),
+          gd: hjzmArr.value,
+        };
         if (addStu.value) {
-          uni.request({
-            url: "https://cqshq.top/AddPlayer?org_id=" + org_id.value,
-            method: "POST",
-            header: {
-              "Content-Type": "application/json",
-            },
-            data: {
-              age: Number(getAge(userMsg.value.date)),
-              sex: Number(userMsg.value.sexNum),
-              id: openid.value,
-              name: String(userMsg.value.name),
-              birthdate: String(userMsg.value.date),
-              organization: String(userMsg.value.marName),
-              idCardNumber: String(userMsg.value.IDcard),
-              joinInGold: Number(userMsg.value.isDeclared),
-              pic: avatarName.value.slice(0, avatarName.value.length - 4),
-              base64code1: String(baseAvatar.value.slice(22)),
-              gd: hjzmArr.value,
-            },
-            success: (res) => {
-              console.log("reg-res", res);
-              if (res.statusCode === 400) {
-                messageToggle("warn", "您已注册！");
-              } else {
-                messageToggle("success", "提交成功");
-                getInfo();
-              }
-            },
-            fail: (err) => {
-              console.log("reg-err", err);
-            },
-          });
+          try {
+            let res = await addPlayerAPI(org_id.value, obj);
+            console.log("reg-res", res);
+            if (res.statusCode === 400) {
+              messageToggle("warn", "您已注册！");
+            } else {
+              messageToggle("success", "提交成功");
+              getInfo();
+            }
+          } catch (err) {
+            console.log("reg-err", err);
+          }
         } else {
-          uni.request({
-            url: "https://cqshq.top/GetUsersInfo?org_id=" + org_id.value,
-            method: "POST",
-            header: {
-              "Content-Type": "application/json",
-            },
-            data: {
-              age: Number(getAge(userMsg.value.date)),
-              sex: Number(userMsg.value.sexNum),
-              id: openid.value,
-              name: String(userMsg.value.name),
-              birthdate: String(userMsg.value.date),
-              organization: String(userMsg.value.marName),
-              idCardNumber: String(userMsg.value.IDcard),
-              joinInGold: Number(userMsg.value.isDeclared),
-              pic: avatarName.value.slice(0, avatarName.value.length - 4),
-              base64code1: String(baseAvatar.value.slice(22)),
-              gd: hjzmArr.value,
-            },
-            success: (res) => {
-              if (res.statusCode === 400) {
-                messageToggle("warn", "您已注册！");
-              } else {
-                messageToggle("success", "提交成功");
-                getInfo();
-              }
-            },
-            fail: (err) => {
-              console.log("reg-err", err);
-            },
-          });
+          try {
+            let res = await getUsersInfoAPI(org_id.value, obj);
+            console.log("reg-res", res);
+            if (res.statusCode === 400) {
+              messageToggle("warn", "您已注册！");
+            } else {
+              messageToggle("success", "提交成功");
+              getInfo();
+            }
+          } catch (err) {
+            console.log("reg-err", err);
+          }
         }
       }
     } else {
@@ -427,32 +419,6 @@ function IdCard(IdCard, type) {
     }
   }
 }
-//获取武馆列表
-onMounted(() => {
-  uni.request({
-    url: "https://cqshq.top/SendOrgsInfo",
-    header: {
-      "Content-Type": "application/json",
-    },
-    success: (res) => {
-      console.log("SendOrgsInfo-res", res);
-      let i = 1;
-      let marlist = [];
-      JSON.parse(res.data).forEach((item) => {
-        marlist.push({
-          text: item.name,
-          value: item.id,
-        });
-      });
-      marList.value = marlist;
-    },
-  });
-});
-
-onLoad((options) => {
-  addStu.value = options.addStu;
-  if (addStu.value) openid.value = "000000";
-});
 </script>
 
 <style scoped>

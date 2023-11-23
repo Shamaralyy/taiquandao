@@ -81,7 +81,9 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
+import { loginAPI } from "@/API/login.js";
 import grey from "../../static/grey.png";
+
 //用户信息
 let user = ref({
   avatarUrl: grey,
@@ -143,29 +145,24 @@ function toJudge() {
   });
 }
 
-function getInfo() {
-  uni.request({
-    url: "https://cqshq.top/Login?id=" + uni.getStorageSync("openid"),
-    header: {
-      "Content-Type": "application/json",
-    },
-    success: (res) => {
-      console.log("Login-res", res);
-      if (res.statusCode === 404) {
-        uni.clearStorageSync();
-        uni.setStorageSync("isLogin", false);
-        uni.setStorageSync("openid", openid.value);
-        console.log("获取openid第二次", uni.getStorageSync("openid"));
-        toPersonalData();
-        console.log("isLogin.value", isLogin.value);
-      } else {
-        uni.setStorageSync("userInfo", res.data);
-        uni.setStorageSync("type", res.data.type);
-        uni.setStorageSync("isLogin", true);
-        showUserInfo();
-      }
-    },
-  });
+async function getInfo() {
+  try {
+    let res = await loginAPI(uni.getStorageSync("openid"));
+    console.log("Login-res", res);
+    if (res.statusCode === 404) {
+      uni.clearStorageSync();
+      uni.setStorageSync("isLogin", false);
+      uni.setStorageSync("openid", openid.value);
+      console.log("获取openid第二次", uni.getStorageSync("openid"));
+      toPersonalData();
+      console.log("isLogin.value", isLogin.value);
+    } else {
+      uni.setStorageSync("userInfo", res.data);
+      uni.setStorageSync("type", res.data.type);
+      uni.setStorageSync("isLogin", true);
+      showUserInfo();
+    }
+  } catch (e) {}
 }
 
 const openid = ref();
