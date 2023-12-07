@@ -1,13 +1,57 @@
 //生成guid
-const S4 = function() {
+const S4 = function () {
 	return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 };
 export function guid() {
 	return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4());
 };
 
-
 //表单校验
+let strategies = {
+	isName: function (value) { // 验证姓名
+		let reName = /^[\u4e00-\u9fa5]{2,4}$/;
+		return reName.test(value);
+	},
+	isID: function (value) { // 校验身份证号
+		let _IDRe18 =
+			/^([1-6][1-9]|50)\d{4}(18|19|20)\d{2}((0[1-9])|10|11|12)(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+		let _IDre15 = /^([1-6][1-9]|50)\d{4}\d{2}((0[1-9])|10|11|12)(([0-2][1-9])|10|20|30|31)\d{3}$/;
+		return (_IDRe18.test(value) || _IDre15.test(value));
+	},
+	isPhone: function (value) { // 手机号码格式
+		let regPhone = /(^1[3|5|8][0-9]{9}$)/;
+		return regPhone.test(value);
+	},
+	isTs: function (value) { // 不包含特殊字符
+		let noTs = /^((?!\\|\/|:|\*|\?|<|>|\||'|%|@|#|&|\$|\^|&|\*).){1,8}$/;
+		return noTs.test(value);
+	}
+};
+
+class Validator {
+	constructor() {
+		this.cache = []; // 保存校验规则
+	}
+	add(dom, rule, errorMsg) {
+		let ary = rule.split(':'); // 把strategy和参数分开
+		this.cache.push(function () {
+			let strategy = ary.shift(); // 用户挑选的strategy
+			ary.unshift(dom.value); // 把input的value添加进参数列表
+			ary.push(errorMsg); // 把errorMsg添加进参数列表
+			return strategies[strategy].apply(dom, ary);
+		});
+	}
+	start() {
+		for (let i = 0, validatorFunc; validatorFunc = this.cache[i++];) {
+			let msg = validatorFunc(); // 开始校验，并取得校验后的返回信息
+			if (msg) { // 如果有确切的返回值，说明校验没有通过
+				return msg;
+			}
+		}
+	}
+}
+
+
 export function testReg(type, value) {
 	let _IDRe18 =
 		/^([1-6][1-9]|50)\d{4}(18|19|20)\d{2}((0[1-9])|10|11|12)(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
